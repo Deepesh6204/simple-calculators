@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Python Calculator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <h2>Calculator</h2>
+
+    <div class="display">
+
+        <div class="expression" id="displayExpression">
+            {{ expression }}
+        </div>
+
+        <div class="result">
+            {{ result }}
+        </div>
+
+    </div>
+
+    <form method="POST">
+
+        <input
+            type="hidden"
+            name="expression"
+            id="expression"
+        >
+
+        <div class="buttons">
+
+            <button type="button" onclick="clearScreen()">C</button>
+
+            <button type="button" onclick="backspace()">⌫</button>
+
+            <button type="button" onclick="add('%')">%</button>
+
+            <button type="button" onclick="add('÷')">÷</button>
+
+
+            <button type="button" onclick="add('7')">7</button>
+            <button type="button" onclick="add('8')">8</button>
+            <button type="button" onclick="add('9')">9</button>
+            <button type="button" onclick="add('×')">×</button>
+
+
+            <button type="button" onclick="add('4')">4</button>
+            <button type="button" onclick="add('5')">5</button>
+            <button type="button" onclick="add('6')">6</button>
+            <button type="button" onclick="add('-')">−</button>
+
+
+            <button type="button" onclick="add('1')">1</button>
+            <button type="button" onclick="add('2')">2</button>
+            <button type="button" onclick="add('3')">3</button>
+            <button type="button" onclick="add('+')">+</button>
+
+
+            <button type="button" onclick="add('0')">0</button>
+            <button type="button" onclick="add('.')">.</button>
+
+
+            <button
+                type="submit"
+                name="operation"
+                value="sqrt">
+                √
+            </button>
+
+
+            <button
+                type="submit"
+                name="operation"
+                value="calculate"
+                class="equals">
+                =
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+const expression = document.getElementById("expression");
+const displayExpression = document.getElementById("displayExpression");
+
+
+function add(value) {
+
+    expression.value += value;
+
+    displayExpression.innerText = expression.value;
+
+}
+
+
+function clearScreen() {
+
+    expression.value = "";
+
+    displayExpression.innerText = "";
+
+}
+
+
+function backspace() {
+
+    expression.value =
+        expression.value.slice(0, -1);
+
+    displayExpression.innerText =
+        expression.value;
+
+}
+
+</script>
+
+</body>
+
+</html>
